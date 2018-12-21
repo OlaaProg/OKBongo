@@ -1,0 +1,70 @@
+<resources>
+	<string name="app_name">OKBongoV2</string>
+	<string name="strNoteInfo">Note info</string>
+	<string name="strDatePattern">dd.MM.yyyy</string>
+	<string name="strBongoNoteNameHint">Note name</string>
+	<string name="strLatitudeText">LAT:</string>
+	<string name="strLongitudeText">LON:</string>
+	<string name="strAltitudeText">ALT:</string>
+	<string name="strLocationText">Location</string>
+	<string name="strSaveText">Save</string>
+	<string name="strDeleteText">Delete</string>
+	<string name="strShareText">Share</string>
+	<string name="strAddText">Add</string>
+	<string name="strInfoText">Info</string>
+	<string name="strEmailText">Write us a mail.</string>
+	<string name="strHotlineText">Call us</string>
+	<string name="strVisitWebside">Visit us online</string>
+	<string name="strExtraNameId">extraNameId</string>
+	<string name="strBongoNotePictureDescriptionText">Picture description</string>
+	<!--Muss zwangsweis ein kleines tel: haben. Die nummer folgt ohne Leerzeichen-->
+	<string name="strHotlineNumber">tel:123456789</string>
+	
+	<string name="strHtmlContenType" translatable="false">text/html</string>
+	<string name="strHtmlEncoding">UTF-8</string>
+	<string name="strCompanyDescriptionAsHtml">
+		<![CDATA[
+		
+		<!doctype html>
+		<html>
+            <head>
+                <meta charset ="utf-8"/>
+                <style>
+                    body> p{
+                        width:49%;
+                        margin-top:0;
+                        margin-bottom:0;
+                        float:left;
+                    }
+                    #ratingInfoBox{
+                        margin-top:0;
+                        margin-bottom:0;
+                        width:49%;
+                        float:right;
+                        background:gray;
+                        color:white;
+                        border:2px black solid;
+                    
+                    }
+                    #ratingInfoBox>a{
+                    color:white
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>BongoNoteApp</h1>
+                <p>
+                    The <b>Bongo NoteApp </b> is great!
+                </p>
+                <div id="ratingInfoBox">
+                    Please rate us in the <a href="https://play.google.com/store/apps/details?id=com.evernote">Google play Store</a> :D
+                </div>
+            </body>
+			
+		</html>
+
+		]]>
+		
+	</string>
+	<string name="strWebSideUrl">https://www.google.de</string>
+</resources>
