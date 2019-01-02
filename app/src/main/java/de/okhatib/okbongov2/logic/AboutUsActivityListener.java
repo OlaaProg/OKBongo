@@ -53,7 +53,18 @@ public class AboutUsActivityListener extends ABaseListener implements View.OnCli
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.btnEmail:
-				//Intent intentEmail =new Intent(Intent.ACTION_MAIL)
+				Intent intentSendEmail =new Intent(Intent.ACTION_SEND);
+				
+				String[] strEmailAddresses= {this.currentActivity.getString(R.string.strDefaultEmailAddressTest) };
+				String strEmailSubject =this.currentActivity.getString(R.string.strDefaultEmailSubject);
+				String strDataTypToSend =this.currentActivity.getString(R.string.strDataTypToSend);
+				String strShareDialogTitle = this.currentActivity.getString(R.string.strEmailText);
+				
+				intentSendEmail.putExtra(Intent.EXTRA_EMAIL,strEmailAddresses);
+				intentSendEmail.putExtra(Intent.EXTRA_SUBJECT, strEmailSubject);
+				intentSendEmail.setType(strDataTypToSend);
+				this.currentActivity.startActivity(Intent.createChooser(intentSendEmail, strShareDialogTitle));
+				
 				Toast.makeText(this.currentActivity,
 						"Email coming soon", Toast.LENGTH_SHORT).show();
 				break;
@@ -68,6 +79,10 @@ public class AboutUsActivityListener extends ABaseListener implements View.OnCli
 				this.currentActivity.startActivity(intentCallDialog);
 				break;
 			case R.id.btnVisitWebside:
+				String strWebsideUrl = this.currentActivity.getString(R.string.strWebSideUrl);
+				Intent intentOpenWebside =new Intent (Intent.ACTION_VIEW, Uri.parse(strWebsideUrl));
+				
+				this.currentActivity.startActivity(intentOpenWebside);
 				Toast.makeText(this.currentActivity,
 						"Webside coming soon", Toast.LENGTH_SHORT).show();
 				break;

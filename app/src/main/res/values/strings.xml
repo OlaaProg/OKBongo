@@ -24,7 +24,6 @@
 	<string name="strHtmlEncoding">UTF-8</string>
 	<string name="strCompanyDescriptionAsHtml">
 		<![CDATA[
-		
 		<!doctype html>
 		<html>
             <head>
@@ -44,7 +43,6 @@
                         background:gray;
                         color:white;
                         border:2px black solid;
-                    
                     }
                     #ratingInfoBox>a{
                     color:white
@@ -67,4 +65,7 @@
 		
 	</string>
 	<string name="strWebSideUrl">https://www.google.de</string>
+	<string name="strDefaultEmailAddressTest">olaa.khatib6@gmail.com</string>
+	<string name="strDataTypToSend">text/plain</string>
+	<string name="strDefaultEmailSubject">Notification</string>
 </resources>

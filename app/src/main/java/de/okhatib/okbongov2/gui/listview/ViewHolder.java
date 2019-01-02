@@ -9,7 +9,7 @@ public class ViewHolder {
 	
 	//region 1. Decl. and Init Attribute
 	/**
-	 * Zeigt ein Vorschaubild der {@link de.rkasper.rkbongoapp.model.BongoNote} an.
+	 * Zeigt ein Vorschaubild der {@link de.okhatib.okbongov2.model.BongoNote} an.
 	 * Sollte keines gesetze sein so wird ein Standardbild angezeigt
 	 */
 	private ImageView imgvBongoNoteThumbnail;

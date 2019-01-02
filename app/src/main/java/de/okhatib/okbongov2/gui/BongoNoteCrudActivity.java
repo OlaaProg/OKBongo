@@ -1,6 +1,8 @@
 package de.okhatib.okbongov2.gui;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.okhatib.okbongov2.R;
+import de.okhatib.okbongov2.logic.BongoCrudActivityListener;
 import de.okhatib.okbongov2.model.BongoNote;
 import de.okhatib.okbongov2.testdata.TestData;
 
@@ -33,6 +36,7 @@ public class BongoNoteCrudActivity extends AppCompatActivity {
 	private EditText txtBongoNoteContent;
 	
 	private ImageView imgvBongoPicture;
+	private BongoCrudActivityListener bongoCrudActivityListener;
 	//endregion
 	
 	//region 2. Lebenszyklus
@@ -57,8 +61,19 @@ public class BongoNoteCrudActivity extends AppCompatActivity {
 		
 		//3. Evtl. Daten setzen
 		this.checkForExtrasAndShowBongoNoteDataOnGui();
+		this.bongoCrudActivityListener =new BongoCrudActivityListener(this);
 		
 		//4. Listener generieren und zuweisen
+	}
+	
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		
+		if(requestCode == BongoCrudActivityListener.REQUEST_CODE_FINE_LOCATION){
+			if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+				this.bongoCrudActivityListener.checkPermissionAndTriggerGps(true);
+			}
+		}
 	}
 	//endregion
 	
