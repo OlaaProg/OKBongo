@@ -2,6 +2,7 @@ package de.okhatib.okbongov2.gui;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,11 +62,22 @@ public class BongoNoteCrudActivity extends AppCompatActivity {
 		
 		//3. Evtl. Daten setzen
 		this.checkForExtrasAndShowBongoNoteDataOnGui();
-		this.bongoCrudActivityListener =new BongoCrudActivityListener(this);
 		
-		//4. Listener generieren und zuweisen
+		//4. Listener generieren
+		this.bongoCrudActivityListener =new BongoCrudActivityListener(this);
+		//5. Listener zuweisen
+		this.imgvBongoPicture.setOnClickListener(this.bongoCrudActivityListener);
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode==BongoCrudActivityListener.REQUEST_CODE_IMAGE_CAPTURE){
+			if(resultCode==BongoNoteCrudActivity.RESULT_OK){
+				Bundle extras =data.getExtras();
+				Bitmap imageBitmap =(Bitmap) extras.get("data");
+				this.imgvBongoPicture.setImageBitmap(imageBitmap);
+			}
+		}
+	}
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		

@@ -2,30 +2,36 @@ package de.okhatib.okbongov2.logic;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.okhatib.okbongov2.R;
 
 public class BongoCrudActivityListener extends ABaseListener implements
+		View.OnClickListener,
 															 MenuItem.OnMenuItemClickListener,
 															 LocationListener {
-	private static final int REQUEST_LOCATION_UPDATE_TIME_INTERVAL_IN_MILLI_SECS = 1000;
-	private static final float REQUEST_LOCATION_UPDATE_DISTANCE_INTERVAL_IN_METERS = 1F;
-	public static final int REQUEST_CODE_FINE_LOCATION = 1;
-	private static final String TAG = BongoCrudActivityListener.class
+	private static final int    REQUEST_LOCATION_UPDATE_TIME_INTERVAL_IN_MILLI_SECS = 1000;
+	private static final float  REQUEST_LOCATION_UPDATE_DISTANCE_INTERVAL_IN_METERS = 1F;
+	public static final  int    REQUEST_CODE_FINE_LOCATION                          = 1;
+	private static final String TAG                                                 = BongoCrudActivityListener.class
 			.getSimpleName();
+	public static final int    REQUEST_CODE_IMAGE_CAPTURE                          = 2;
 	
 	//region 1. Decl. and Init Attribute
 	private TextView txtvEditDate;
@@ -96,7 +102,18 @@ public class BongoCrudActivityListener extends ABaseListener implements
 	public void onProviderDisabled(String provider) {
 		Log.d(TAG, "Standortbestimmung hier GPS ausgeschaltet");
 	}
+	//region PhotoHandling
+	private void startSystemCameraApp(){
+		Intent takePictureIntent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		if(takePictureIntent.resolveActivity(this.currentActivity.getPackageManager())!=null){
+			this.currentActivity
+					.startActivityForResult(takePictureIntent,REQUEST_CODE_IMAGE_CAPTURE);
+		}else{
+			Toast.makeText(this.currentActivity, "Sorry, but you have no system camera app.",Toast.LENGTH_SHORT).show();
+		}
+	}
 	
+	//endregion
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()){
@@ -143,5 +160,14 @@ public class BongoCrudActivityListener extends ABaseListener implements
 	@Override
 	public void generateWidgetReferences() {
 	
+	}
+	
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+			case R.id.imgvBongoPicture:
+				this.startSystemCameraApp();
+				break;
+		}
 	}
 }
